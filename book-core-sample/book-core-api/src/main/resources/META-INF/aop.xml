@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<aspectj>
+    <weaver options="-showWeaveInfo -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
+        <include within="org.nocoder.book.domain.model.book..*" />
+    </weaver>
+</aspectj>

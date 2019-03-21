@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <!-- 由于此处使用aspectjweaver，无法使用spring logback相关环境变量
+     所以根据系统变量：evn.profile 加载相应的环境的log配置 ；
+     evn.profile通过jvm参数设置，默认为dev-->
+    <include resource="log/logback-${env.profile:-dev}.xml"></include>
+</configuration>
