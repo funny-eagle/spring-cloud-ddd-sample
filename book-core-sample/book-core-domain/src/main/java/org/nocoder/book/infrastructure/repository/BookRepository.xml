@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.nocoder.book.domain.model.book">
+<mapper namespace="org.nocoder.book.infrastructure.repository.BookRepository">
     <resultMap id="accountResultMap" type="org.nocoder.book.domain.model.book.Book">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
@@ -10,7 +10,7 @@
         insert into test_book (name) value (#{name});
     </insert>
 
-    <select id="getById" parameterType="BIGINT">
+    <select id="getById" parameterType="LONG" resultType="org.nocoder.book.domain.model.book.Book">
         select id, name from test_book where id=#{id}
     </select>
 

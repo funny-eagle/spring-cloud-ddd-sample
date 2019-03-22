@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface BookRepository {
 
     int addBook(Book book);
+
+    Book getById(long id);
 }

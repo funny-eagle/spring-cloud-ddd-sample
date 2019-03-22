@@ -27,10 +27,11 @@ public class MybatisConfig {
 
     /**
      * 注册datasource，通过@ConfigurationProperties(prefix="c3p0")将properties文件中c3p0开头的属性map到datasource相应的属性上
+     *
      * @return
      */
     @Bean
-    @ConfigurationProperties(prefix="c3p0")
+    @ConfigurationProperties(prefix = "c3p0")
     public ComboPooledDataSource dataSource() {
         return new ComboPooledDataSource();
     }
@@ -38,13 +39,9 @@ public class MybatisConfig {
 
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
-
-        sqlSessionFactoryBean.setTypeAliasesPackage("com.friday.core.model");
         sqlSessionFactoryBean.setConfigLocation(new ClassPathResource(MYBATIS_CONFIG_FILE));
-
         PageInterceptor pageInterceptor = new PageInterceptor();
         pageInterceptor.setDatabaseType("mysql");
         sqlSessionFactoryBean.setPlugins(new Interceptor[]{pageInterceptor});

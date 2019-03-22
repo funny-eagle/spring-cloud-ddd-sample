@@ -1,6 +1,12 @@
 server:
   port: 8000
 
+# 指定注册中心的地址，启用服务发现功能
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka
+
 spring:
   application:
     name: spring-cloud-gateway
@@ -11,16 +17,18 @@ spring:
       discovery:
         locator:
           enabled: true
+
       routes:
+        # 图书服务
       - id: book-service
         uri: lb://book-service
         predicates:
         - Path=/api/book/**
-# 指定注册中心的地址，以便使用服务发现功能
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:1111/eureka
+        # 图书馆服务
+      - id: library-service
+        uri: lb://library-service
+        predicates:
+        - Path=/api/library/**
 
 logging:
   level:
