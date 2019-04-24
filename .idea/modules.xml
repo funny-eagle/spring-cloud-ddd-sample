@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/aggregation/aggregation-service.iml" filepath="$PROJECT_DIR$/aggregation/aggregation-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/book-service/book-service.iml" filepath="$PROJECT_DIR$/book-service/book-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/book-service/book-service-api/book-service-api.iml" filepath="$PROJECT_DIR$/book-service/book-service-api/book-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/book-service/book-service-application/book-service-application.iml" filepath="$PROJECT_DIR$/book-service/book-service-application/book-service-application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/book-service/book-service-domain/book-service-domain.iml" filepath="$PROJECT_DIR$/book-service/book-service-domain/book-service-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons/commons.iml" filepath="$PROJECT_DIR$/commons/commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka/eureka.iml" filepath="$PROJECT_DIR$/eureka/eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-cloud-ddd-sample.iml" filepath="$PROJECT_DIR$/.idea/spring-cloud-ddd-sample.iml" />
+    </modules>
+  </component>
+</project>

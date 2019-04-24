@@ -2,16 +2,17 @@
 
 Spring Cloud DDD Sample 
 
-```xml
-<spring.boot.version>2.1.3.RELEASE</spring.boot.version>
-<spring.version>5.1.5.RELEASE</spring.version>
-<spring.cloud.version>Greenwich.SR1</spring.cloud.version>
+```yaml
+spring.version: 5.1.5.RELEASE
+spring-boot.version: 2.1.3.RELEASE
+spring-cloud.version: Greenwich.SR1
 ```
 
-- commons：commons
-- eureka: 注册中心服务
-- gateway: 服务网关
-- aggregation： 聚合层服务
-    - 聚合多个请求返回的数据
-- book-service: 图书服务
+- spring-cloud-ddd-sample
+    - commons：公共组件
+    - eureka: 注册中心
+    - gateway: 服务网关
+    - aggregation： 聚合层服务
+        - 聚合多个请求返回的数据
+    - book-service: 图书服务
 

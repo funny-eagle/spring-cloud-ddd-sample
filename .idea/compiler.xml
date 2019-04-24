@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="aggregation-service" />
+        <module name="book-service-api" />
+        <module name="book-service-application" />
+        <module name="book-service-domain" />
+        <module name="commons" />
+        <module name="eureka" />
+        <module name="gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="aggregation-service" target="1.8" />
+      <module name="book-service" target="1.5" />
+      <module name="book-service-api" target="1.8" />
+      <module name="book-service-application" target="1.8" />
+      <module name="book-service-domain" target="1.8" />
+      <module name="commons" target="1.8" />
+      <module name="eureka" target="1.8" />
+      <module name="gateway" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
