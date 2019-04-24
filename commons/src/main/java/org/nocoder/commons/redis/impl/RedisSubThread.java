@@ -16,11 +16,13 @@ public class RedisSubThread extends Thread {
     private final JedisPool jedisPool;
     private final JedisPubSub jedisPubSub;
     private final String channel;
+
     public RedisSubThread(JedisPool jedisPool, JedisPubSub jedisPubSub, String channel) {
         this.jedisPool = jedisPool;
-        this.jedisPubSub=jedisPubSub;
-        this.channel=channel;
+        this.jedisPubSub = jedisPubSub;
+        this.channel = channel;
     }
+
     @Override
     public void run() {
         Jedis jedis = null;
@@ -28,9 +30,9 @@ public class RedisSubThread extends Thread {
             jedis = jedisPool.getResource();
             jedis.subscribe(jedisPubSub, channel);
         } catch (Exception e) {
-            LOG.error("subsrcibe channel {} error {}",channel,e.getStackTrace());
+            LOG.error("subsrcibe channel {} error {}", channel, e.getStackTrace());
         } finally {
-            if (jedis!=null){
+            if (jedis != null) {
                 jedisPool.returnResource(jedis);
             }
         }

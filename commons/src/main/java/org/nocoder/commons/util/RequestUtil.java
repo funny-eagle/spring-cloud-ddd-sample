@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
  */
 public class RequestUtil {
 
-    public static String getRemoteIp(HttpServletRequest request){
+    public static String getRemoteIp(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
@@ -26,8 +26,8 @@ public class RequestUtil {
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
-        ip=ip.equals("0:0:0:0:0:0:0:1")?"127.0.0.1":ip;
-        if ("127.0.0.1".equals(ip)){
+        ip = ip.equals("0:0:0:0:0:0:0:1") ? "127.0.0.1" : ip;
+        if ("127.0.0.1".equals(ip)) {
             try {
                 ip = InetAddress.getLocalHost().getHostAddress();
             } catch (UnknownHostException e) {

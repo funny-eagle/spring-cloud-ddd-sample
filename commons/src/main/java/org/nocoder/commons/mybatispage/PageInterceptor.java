@@ -20,17 +20,19 @@ import java.util.Properties;
 
 /**
  * 分页拦截器，用于拦截需要进行分页查询的操作，然后对其进行分页处理
- * @author huchun
  *
+ * @author huchun
  */
-@Intercepts({ @Signature(method = "prepare", type = StatementHandler.class, args = { Connection.class }) })
+@Intercepts({@Signature(method = "prepare", type = StatementHandler.class, args = {Connection.class})})
 public class PageInterceptor implements Interceptor {
 
-    private String databaseType;// 数据库类型，不同的数据库有不同的分页方法
+    // 数据库类型，不同的数据库有不同的分页方法
+    private String databaseType;
 
     /**
      * 拦截后要执行的方法
      */
+    @Override
     public Object intercept(Invocation invocation) throws Throwable {
         RoutingStatementHandler handler = (RoutingStatementHandler) invocation
                 .getTarget();
@@ -57,7 +59,8 @@ public class PageInterceptor implements Interceptor {
                     .getFieldValue(delegate, "mappedStatement");
             Connection connection = (Connection) invocation.getArgs()[0];
             String sql = boundSql.getSql();
-            if (page.getTotalCount() < 0) { // 如果总数为负数表需要设置
+            // 如果总数为负数表需要设置
+            if (page.getTotalCount() < 0) {
                 this.setTotalRecord(paramObj, mappedStatement, connection, page);
             }
             // 获取分页Sql语句
@@ -71,6 +74,7 @@ public class PageInterceptor implements Interceptor {
     /**
      * 拦截器对应的封装原始对象的方法
      */
+    @Override
     public Object plugin(Object target) {
         return Plugin.wrap(target, this);
     }
@@ -78,6 +82,7 @@ public class PageInterceptor implements Interceptor {
     /**
      * 设置注册拦截器时设定的属性
      */
+    @Override
     public void setProperties(Properties properties) {
         this.databaseType = properties.getProperty("databaseType");
     }
@@ -85,10 +90,8 @@ public class PageInterceptor implements Interceptor {
     /**
      * 根据page对象获取对应的分页查询Sql语句，这里只做了两种数据库类型，Mysql和Oracle 其它的数据库都 没有进行分页
      *
-     * @param page
-     *            分页对象
-     * @param sql
-     *            原sql语句
+     * @param page 分页对象
+     * @param sql  原sql语句
      * @return
      */
     private String getPageSql(Pagination page, String sql) {
@@ -104,10 +107,8 @@ public class PageInterceptor implements Interceptor {
     /**
      * 获取Mysql数据库的分页查询语句
      *
-     * @param page
-     *            分页对象
-     * @param sqlBuffer
-     *            包含原sql语句的StringBuffer对象
+     * @param page      分页对象
+     * @param sqlBuffer 包含原sql语句的StringBuffer对象
      * @return Mysql数据库分页语句
      */
     private String getMysqlPageSql(Pagination page, StringBuffer sqlBuffer) {
@@ -121,10 +122,8 @@ public class PageInterceptor implements Interceptor {
     /**
      * 获取Oracle数据库的分页查询语句
      *
-     * @param page
-     *            分页对象
-     * @param sqlBuffer
-     *            包含原sql语句的StringBuffer对象
+     * @param page      分页对象
+     * @param sqlBuffer 包含原sql语句的StringBuffer对象
      * @return Oracle数据库的分页查询语句
      */
     private String getOraclePageSql(Pagination page, StringBuffer sqlBuffer) {
@@ -144,12 +143,9 @@ public class PageInterceptor implements Interceptor {
     /**
      * 给当前的参数对象page设置总记录数
      *
-     * @param obj
-     *            Mapper映射语句对应的参数对象
-     * @param mappedStatement
-     *            Mapper映射语句
-     * @param connection
-     *            当前的数据库连接
+     * @param obj             Mapper映射语句对应的参数对象
+     * @param mappedStatement Mapper映射语句
+     * @param connection      当前的数据库连接
      */
     private void setTotalRecord(Object obj, MappedStatement mappedStatement,
                                 Connection connection, Pagination page) {
@@ -183,10 +179,12 @@ public class PageInterceptor implements Interceptor {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null)
+                if (rs != null) {
                     rs.close();
-                if (pstmt != null)
+                }
+                if (pstmt != null) {
                     pstmt.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -205,16 +203,13 @@ public class PageInterceptor implements Interceptor {
 
     /**
      * 利用反射进行操作的一个工具类
-     *
      */
     private static class ReflectUtil {
         /**
          * 利用反射获取指定对象的指定属性
          *
-         * @param obj
-         *            目标对象
-         * @param fieldName
-         *            目标属性
+         * @param obj       目标对象
+         * @param fieldName 目标属性
          * @return 目标属性的值
          */
         public static Object getFieldValue(Object obj, String fieldName) {
@@ -236,10 +231,8 @@ public class PageInterceptor implements Interceptor {
         /**
          * 利用反射获取指定对象里面的指定属性
          *
-         * @param obj
-         *            目标对象
-         * @param fieldName
-         *            目标属性
+         * @param obj       目标对象
+         * @param fieldName 目标属性
          * @return 目标字段
          */
         private static Field getField(Object obj, String fieldName) {
@@ -259,42 +252,11 @@ public class PageInterceptor implements Interceptor {
         /**
          * 利用反射设置指定对象的指定属性为指定的值
          *
-         * @param obj
-         *            目标对象
-         * @param fieldName
-         *            目标属性
-         * @param fieldValue
-         *            目标值
+         * @param obj        目标对象
+         * @param fieldName  目标属性
+         * @param fieldValue 目标值
          */
-        public static void setFieldValue(Object obj, String fieldName,
-                                         String fieldValue) {
-            Field field = ReflectUtil.getField(obj, fieldName);
-            if (field != null) {
-                try {
-                    field.setAccessible(true);
-                    field.set(obj, fieldValue);
-                } catch (IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        /**
-         * 利用反射设置指定对象的指定属性为指定的值
-         *
-         * @param obj
-         *            目标对象
-         * @param fieldName
-         *            目标属性
-         * @param fieldValue
-         *            目标值
-         */
-        public static void setFieldValue(Object obj, String fieldName,
-                                         Object fieldValue) {
+        public static void setFieldValue(Object obj, String fieldName, Object fieldValue) {
             Field field = ReflectUtil.getField(obj, fieldName);
             if (field != null) {
                 try {

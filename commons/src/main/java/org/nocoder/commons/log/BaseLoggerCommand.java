@@ -23,7 +23,7 @@ import java.util.Enumeration;
  */
 public class BaseLoggerCommand implements Command {
 
-    private Logger LOG = LoggerFactory.getLogger(BaseLoggerCommand.class);
+    private Logger logger = LoggerFactory.getLogger(BaseLoggerCommand.class);
 
     @Override
     public boolean execute(Context context) throws Exception {
@@ -41,14 +41,17 @@ public class BaseLoggerCommand implements Command {
             //拼接请求标识,时间(时分秒毫秒)+线程号
             logInfo.append("[").append(timeStr).append("exec").append(threadTemp[threadTemp.length - 1]).append("]开始");
             if (request != null) {
-                logInfo.append(",IP:" + RequestUtil.getRemoteIp(request)); //调用者ip
+                //调用者ip
+                logInfo.append(",IP:" + RequestUtil.getRemoteIp(request));
             }
-            logInfo.append(",调用方法:" + signature.getDeclaringTypeName() + "." + signature.getName());//调用接口
+            //调用接口
+            logInfo.append(",调用方法:" + signature.getDeclaringTypeName() + "." + signature.getName());
             Object[] args = (Object[]) context.get(BaseServiceInterceptor.REQUEST_ARGS);
-            logInfo.append(",请求参数:" + parseArgsJsonString(args)); //请求参数
-            LOG.info(logInfo.toString());
+            //请求参数
+            logInfo.append(",请求参数:" + parseArgsJsonString(args));
+            logger.info(logInfo.toString());
         } catch (Exception e) {
-            LOG.warn("请求开始日志打印错误");
+            logger.warn("请求开始日志打印错误");
         }
         startTime.set(callStartTime);
         return false;
@@ -59,13 +62,16 @@ public class BaseLoggerCommand implements Command {
      * @throws SocketException
      */
     public static String getRealIp() throws SocketException {
-        String localip = null;// 本地IP，如果没有配置外网IP则返回它
-        String netip = null;// 外网IP
+        // 本地IP，如果没有配置外网IP则返回它
+        String localip = null;
+        // 外网IP
+        String netip = null;
 
         Enumeration<NetworkInterface> netInterfaces =
                 NetworkInterface.getNetworkInterfaces();
-        InetAddress ip = null;
-        boolean finded = false;// 是否找到外网IP
+        InetAddress ip;
+        // 是否找到外网IP
+        boolean finded = false;
         while (netInterfaces.hasMoreElements() && !finded) {
             NetworkInterface ni = netInterfaces.nextElement();
             Enumeration<InetAddress> address = ni.getInetAddresses();
@@ -73,13 +79,15 @@ public class BaseLoggerCommand implements Command {
                 ip = address.nextElement();
                 if (!ip.isSiteLocalAddress()
                         && !ip.isLoopbackAddress()
-                        && ip.getHostAddress().indexOf(":") == -1) {// 外网IP
+                        // 外网IP
+                        && ip.getHostAddress().indexOf(":") == -1) {
                     netip = ip.getHostAddress();
                     finded = true;
                     break;
                 } else if (ip.isSiteLocalAddress()
                         && !ip.isLoopbackAddress()
-                        && ip.getHostAddress().indexOf(":") == -1) {// 内网IP
+                        // 内网IP
+                        && ip.getHostAddress().indexOf(":") == -1) {
                     localip = ip.getHostAddress();
                 }
             }
@@ -104,7 +112,7 @@ public class BaseLoggerCommand implements Command {
                 try {
                     jsonStr = jsonStr + JSONObject.toJSONString(arg) + ",";
                 } catch (Exception e) {
-                    LOG.warn("cannot parse request.");
+                    logger.warn("cannot parse request.");
                 }
             }
         }

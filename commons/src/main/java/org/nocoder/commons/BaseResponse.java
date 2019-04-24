@@ -10,18 +10,18 @@ public class BaseResponse<T> {
 
     private T data;
 
-    public BaseResponse(){
+    public BaseResponse() {
 
     }
 
-    public BaseResponse(T data){
+    public BaseResponse(T data) {
         this.data = data;
     }
 
-    public BaseResponse(String key,T data){
-        Map<String,T> result= new HashMap();
-        result.put(key,data);
-        this.data = (T)result;
+    public BaseResponse(String key, T data) {
+        Map<String, T> result = new HashMap();
+        result.put(key, data);
+        this.data = (T) result;
     }
 
     public int getStatus() {

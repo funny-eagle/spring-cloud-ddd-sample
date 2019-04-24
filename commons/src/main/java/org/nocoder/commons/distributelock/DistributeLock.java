@@ -15,7 +15,7 @@ public class DistributeLock implements Closeable {
 
     Logger logger = LoggerFactory.getLogger(DistributeLock.class);
 
-    private DistributeLock(){
+    private DistributeLock() {
 
     }
 
