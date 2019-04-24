@@ -1,4 +1,4 @@
-package org.nocoder.sample;
+package org.nocoder.eureka;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
