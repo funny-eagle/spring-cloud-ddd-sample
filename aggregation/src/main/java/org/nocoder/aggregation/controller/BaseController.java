@@ -1,9 +1,9 @@
 package org.nocoder.aggregation.controller;
 
-import com.yuntu.commons.BaseResponse;
-import com.yuntu.commons.util.UrlParamUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
+import org.nocoder.commons.BaseResponse;
+import org.nocoder.commons.util.UrlParamUtil;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -11,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
-
 /**
  * @author YangJinlong
  */

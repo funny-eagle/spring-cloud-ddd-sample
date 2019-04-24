@@ -1,8 +1,17 @@
-# spring-cloud-ddd-sample
-spring-cloud-ddd-sample
+# Spring Cloud DDD Sample
 
-book-core-sample
+Spring Cloud DDD Sample 
 
-spring-cloud-eureka-sample
+```xml
+<spring.boot.version>2.1.3.RELEASE</spring.boot.version>
+<spring.version>5.1.5.RELEASE</spring.version>
+<spring.cloud.version>Greenwich.SR1</spring.cloud.version>
+```
 
-spring-cloud-gateway-sample
+- commons：commons
+- eureka: 注册中心服务
+- gateway: 服务网关
+- aggregation： 聚合层服务
+    - 聚合多个请求返回的数据
+- book-service: 图书服务
+
