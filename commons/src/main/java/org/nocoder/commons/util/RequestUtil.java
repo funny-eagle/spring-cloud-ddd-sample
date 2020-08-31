@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * Created by wangwenqiang on 2018/1/18.
+ * Created by Admin on 2018/1/18.
  */
 public class RequestUtil {
 

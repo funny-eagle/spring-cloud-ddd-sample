@@ -3,7 +3,7 @@ package org.nocoder.commons.mybatispage;
 /**
  * 分页，在分页挡截中使用
  *
- * @author huchun
+ * @author Admin
  */
 public interface Pagination {
 

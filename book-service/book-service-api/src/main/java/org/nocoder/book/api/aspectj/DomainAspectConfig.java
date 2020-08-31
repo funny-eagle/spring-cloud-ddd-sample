@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by huchun on 2017/7/13.
+ * Created by Admin on 2017/7/13.
  */
 @Configuration
 public class DomainAspectConfig {

@@ -2,8 +2,6 @@
 
 Spring Cloud DDD Sample
 
-![micro-service](./img/micro-service.png)
-
 - spring-cloud-ddd-sample
     - commons
         - 公共组件
@@ -19,6 +17,8 @@ Spring Cloud DDD Sample
         - 聚合多个请求返回的数据
     - book-service
         - 图书服务
+
+![micro-service](./img/micro-service.png)
 
 
 使用的版本号：

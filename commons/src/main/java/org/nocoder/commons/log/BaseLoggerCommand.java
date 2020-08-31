@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.Enumeration;
 
 /**
- * Created by wangwenqiang on 2018/8/3.
+ * Created by Admin on 2018/8/3.
  */
 public class BaseLoggerCommand implements Command {
 

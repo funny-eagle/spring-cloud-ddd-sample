@@ -2,11 +2,9 @@ package org.nocoder.book.applicatoin.assembler.book;
 
 import org.nocoder.book.applicatoin.dto.book.BookDto;
 import org.nocoder.book.domain.model.book.Book;
-import org.nocoder.book.infrastructure.repository.BookRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 

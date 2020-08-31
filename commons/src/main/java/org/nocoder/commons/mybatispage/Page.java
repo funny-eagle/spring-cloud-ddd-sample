@@ -1,14 +1,12 @@
 package org.nocoder.commons.mybatispage;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.List;
 
 /**
  * 分页基本实现
  *
  * @param <T>
- * @author huchun
+ * @author Admin
  */
 public class Page<T> implements Pagination {
 

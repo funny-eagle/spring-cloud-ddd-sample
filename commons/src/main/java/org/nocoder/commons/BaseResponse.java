@@ -5,7 +5,9 @@ import java.util.Map;
 
 public class BaseResponse<T> {
 
-    //200 成功， 其他失败
+    /**
+     * 200 成功， 其他失败
+     */
     private int status = 200;
 
     private T data;

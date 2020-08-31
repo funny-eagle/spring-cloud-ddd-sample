@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by huchun on 2017/7/31.
+ * Created by Admin on 2017/7/31.
  */
 public interface IRedisService {
 
