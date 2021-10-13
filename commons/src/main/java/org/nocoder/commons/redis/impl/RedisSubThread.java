@@ -7,9 +7,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
 
 /**
- * @Description: redis订阅消息线程
- * @Author:caizhangxian
- * @Date:2018/1/31
+ * redis订阅消息线程
  */
 public class RedisSubThread extends Thread {
     Logger LOG = LoggerFactory.getLogger(RedisSubThread.class);
